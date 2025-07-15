@@ -602,6 +602,7 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
               {item}
             </motion.a>
           ))}
+          {/* --- Add Shop link here --- */}
           <motion.a
             key="Shop"
             href="/shop"
@@ -621,15 +622,7 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
         </Button>
       </div>
 
-      {navModal && (
-        <NavModal
-          title={navModal}
-          content={`This is placeholder information for ${navModal}. You can update this content later.`}
-          onClose={() => setNavModal(null)}
-        />
-      )}
-
-      {/* Hamburger menu button (already present) */}
+      {/* --- Add mobile menu with Shop link --- */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-[#2C1A12] shadow-lg z-20 flex flex-col items-center py-4 gap-4">
           {["Collection", "About", "Occasions", "Contact"].map((item) => (
@@ -655,6 +648,13 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
             Shop
           </a>
         </div>
+      )}
+      {navModal && (
+        <NavModal
+          title={navModal}
+          content={`This is placeholder information for ${navModal}. You can update this content later.`}
+          onClose={() => setNavModal(null)}
+        />
       )}
     </motion.nav>
   )
