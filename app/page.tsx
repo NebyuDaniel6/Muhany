@@ -131,7 +131,7 @@ function ProductDetailPage({
 
   const handleWhatsAppOrder = () => {
     const message = `Hello! I'd like to order:\n\n${product.name} x${quantity}\nPrice: ${product.price} each\nTotal: ETB ${Number.parseInt(product.price.replace("ETB ", "")) * quantity}\n\nProduct Details:\n${product.longDescription}\n\nThank you!`
-    const whatsappUrl = `https://wa.me/251911234567?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/251912604444?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
   }
 
@@ -369,7 +369,7 @@ function ShoppingCart({
   const handleWhatsAppOrder = () => {
     const orderText = items.map((item) => `${item.product.name} x${item.quantity} - ${item.product.price}`).join("\n")
     const message = `Hello! I'd like to order:\n\n${orderText}\n\nTotal: ETB ${total}\n\nThank you!`
-    const whatsappUrl = `https://wa.me/251911234567?text=${encodeURIComponent(message)}`
+    const whatsappUrl = `https://wa.me/251912604444?text=${encodeURIComponent(message)}`
     window.open(whatsappUrl, "_blank")
   }
 
@@ -882,7 +882,7 @@ export default function MuhanyChocos() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/251911234567"
+        href="https://wa.me/251912604444"
         target="_blank"
         rel="noopener noreferrer"
         style={{
