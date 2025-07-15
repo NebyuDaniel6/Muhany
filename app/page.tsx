@@ -53,6 +53,27 @@ const chocolateProducts = [
     stockCount: 1,
     model: "/models/OBJ/Asset 4.glb",
   },
+  {
+    id: "dubai",
+    name: "Dubai Chocolate",
+    price: "ETB 1200",
+    originalPrice: "ETB 1500",
+    description: "A luxurious chocolate inspired by Dubai.",
+    longDescription: "This chocolate combines the finest ingredients with a touch of Dubai luxury. Rendered with OBJ+MTL.",
+    color: "#C2B280",
+    position: [2, 1, 2] as [number, number, number],
+    type: "obj",
+    rating: 4.8,
+    reviews: 25,
+    ingredients: ["Cocoa", "Gold Dust", "Spices"],
+    allergens: ["May contain nuts"],
+    nutritionPer100g: { calories: 550, fat: 35, carbs: 50, protein: 7, fiber: 5 },
+    images: ["/products/dubai-chocolate.jpg"],
+    inStock: true,
+    stockCount: 10,
+    model: "/models/OBJ/Dubai Chocolate.obj",
+    mtl: "/models/OBJ/Dubai Chocolate.mtl",
+  },
 ]
 
 // Interactive 3D Chocolate Item
@@ -66,8 +87,21 @@ function InteractiveChocolateItem({
   const meshRef = useRef<THREE.Mesh>(null)
   const [hovered, setHovered] = useState(false)
 
-  // Load GLB model if product.model exists
-  const gltf = product.model ? useGLTF(product.model) : null
+  // Loader logic for GLB or OBJ+MTL
+  let gltf: any = null
+  let obj: any = null
+  if (product.type === "glb" && product.model) {
+    gltf = useGLTF(product.model)
+  }
+  if (product.type === "obj" && product.model && product.mtl) {
+    // @ts-ignore
+    obj = useLoader(OBJLoader, product.model, (loader) => {
+      // @ts-ignore
+      new MTLLoader().load(product.mtl, (materials) => {
+        loader.setMaterials(materials)
+      })
+    })
+  }
 
   useFrame(() => {
     if (meshRef.current) {
@@ -78,13 +112,15 @@ function InteractiveChocolateItem({
 
   const handleClick = (event: ThreeEvent<MouseEvent>) => {
     event.stopPropagation()
-    console.log("Clicked 3D product:", product.name)
     onSelect(product)
   }
 
   const renderGeometry = () => {
     if (gltf && gltf.scene) {
       return <primitive object={gltf.scene} />
+    }
+    if (obj) {
+      return <primitive object={obj} />
     }
     switch (product.type) {
       case "bar":
