@@ -32,157 +32,6 @@ import ProductModal from "@/components/ProductModal"
 // Product data for 3D items
 const chocolateProducts = [
   {
-    id: "1",
-    name: "Dark Chocolate Bar",
-    price: "ETB 450",
-    originalPrice: "ETB 520",
-    description: "70% Ethiopian dark chocolate with hints of berry and wine notes",
-    longDescription:
-      "Our signature dark chocolate bar is crafted from single-origin Ethiopian cacao beans, carefully roasted to bring out the complex flavors of berry, wine, and subtle spice notes. Each bar is hand-tempered and aged for 30 days to achieve the perfect texture and flavor profile.",
-    color: "#2C1A12",
-    position: [2, 1, 0] as [number, number, number],
-    type: "bar",
-    rating: 4.9,
-    reviews: 127,
-    ingredients: ["70% Ethiopian Cacao", "Organic Cane Sugar", "Cocoa Butter", "Vanilla Extract"],
-    allergens: ["May contain traces of nuts"],
-    nutritionPer100g: {
-      calories: 534,
-      fat: 31,
-      carbs: 52,
-      protein: 8,
-      fiber: 11,
-    },
-    images: [
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-    ],
-    inStock: true,
-    stockCount: 45,
-    model: "/models/a_detailed_chocolate__0710073337_texture.glb",
-  },
-  {
-    id: "2",
-    name: "Milk Chocolate Bar",
-    price: "ETB 380",
-    originalPrice: "ETB 420",
-    description: "Creamy milk chocolate with Ethiopian honey",
-    longDescription:
-      "A smooth and creamy milk chocolate bar made with fresh Ethiopian milk and locally sourced honey. The perfect balance of sweetness and richness, with a velvety texture that melts beautifully on your tongue.",
-    color: "#8B4513",
-    position: [-2, -1, 2] as [number, number, number],
-    type: "bar",
-    rating: 4.7,
-    reviews: 89,
-    ingredients: ["Ethiopian Milk", "Cacao", "Honey", "Cocoa Butter", "Vanilla"],
-    allergens: ["Contains milk", "May contain nuts"],
-    nutritionPer100g: {
-      calories: 545,
-      fat: 32,
-      carbs: 56,
-      protein: 7,
-      fiber: 4,
-    },
-    images: [
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-    ],
-    inStock: true,
-    stockCount: 32,
-  },
-  {
-    id: "3",
-    name: "White Chocolate Bar",
-    price: "ETB 420",
-    originalPrice: "ETB 480",
-    description: "Premium white chocolate with vanilla bean",
-    longDescription:
-      "Luxurious white chocolate crafted from the finest cocoa butter and Madagascar vanilla beans. Rich, creamy, and indulgent with a smooth finish that showcases the quality of our ingredients.",
-    color: "#F5DEB3",
-    position: [0, 2, -2] as [number, number, number],
-    type: "bar",
-    rating: 4.6,
-    reviews: 64,
-    ingredients: ["Cocoa Butter", "Milk Powder", "Sugar", "Madagascar Vanilla", "Lecithin"],
-    allergens: ["Contains milk", "May contain nuts"],
-    nutritionPer100g: {
-      calories: 559,
-      fat: 36,
-      carbs: 51,
-      protein: 6,
-      fiber: 0,
-    },
-    images: [
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-    ],
-    inStock: true,
-    stockCount: 28,
-  },
-  {
-    id: "4",
-    name: "Truffle Collection",
-    price: "ETB 850",
-    originalPrice: "ETB 950",
-    description: "Assorted premium truffles in elegant box",
-    longDescription:
-      "A curated collection of 12 handcrafted truffles featuring unique Ethiopian flavors including coffee, berbere spice, honey, and traditional herbs. Each truffle is individually crafted and presented in our signature gold box.",
-    color: "#4A2C17",
-    position: [-3, 0, 1] as [number, number, number],
-    type: "truffle",
-    rating: 5.0,
-    reviews: 156,
-    ingredients: ["Dark Chocolate", "Cream", "Ethiopian Coffee", "Spices", "Honey"],
-    allergens: ["Contains milk", "May contain nuts"],
-    nutritionPer100g: {
-      calories: 498,
-      fat: 28,
-      carbs: 48,
-      protein: 6,
-      fiber: 8,
-    },
-    images: [
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-    ],
-    inStock: true,
-    stockCount: 15,
-  },
-  {
-    id: "5",
-    name: "Raw Cocoa Beans",
-    price: "ETB 200",
-    originalPrice: "ETB 250",
-    description: "Premium Ethiopian cocoa beans",
-    longDescription:
-      "Raw, unroasted cocoa beans from our partner farms in southern Ethiopia. Perfect for home roasting, baking, or enjoying as a healthy snack. These beans showcase the pure, natural flavors of Ethiopian cacao.",
-    color: "#3D2914",
-    position: [3, -2, -1] as [number, number, number],
-    type: "bean",
-    rating: 4.8,
-    reviews: 43,
-    ingredients: ["100% Raw Ethiopian Cocoa Beans"],
-    allergens: ["None"],
-    nutritionPer100g: {
-      calories: 456,
-      fat: 31,
-      carbs: 38,
-      protein: 12,
-      fiber: 15,
-    },
-    images: [
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-      "/placeholder.svg?height=400&width=400",
-    ],
-    inStock: true,
-    stockCount: 67,
-  },
-  {
     id: "6",
     name: "Asset 4 GLB Model",
     price: "ETB 999",
@@ -610,6 +459,16 @@ function InteractiveChocolateScene({
 }: {
   onProductSelect: (product: (typeof chocolateProducts)[0]) => void
 }) {
+  // Mock products for floating beans and pieces
+  const floatingProducts = [
+    { id: 'bean1', name: 'Cocoa Bean 1', description: 'A floating cocoa bean', color: '#3D2914', type: 'bean', position: [0,0,0], model: undefined },
+    { id: 'bean2', name: 'Cocoa Bean 2', description: 'A floating cocoa bean', color: '#3D2914', type: 'bean', position: [0,0,0], model: undefined },
+    { id: 'bean3', name: 'Cocoa Bean 3', description: 'A floating cocoa bean', color: '#3D2914', type: 'bean', position: [0,0,0], model: undefined },
+    { id: 'piece1', name: 'Chocolate Piece 1', description: 'A floating chocolate piece', color: '#4A2C17', type: 'piece', position: [0,0,0], model: undefined },
+    { id: 'piece2', name: 'Chocolate Piece 2', description: 'A floating chocolate piece', color: '#4A2C17', type: 'piece', position: [0,0,0], model: undefined },
+    { id: 'piece3', name: 'Chocolate Piece 3', description: 'A floating chocolate piece', color: '#4A2C17', type: 'piece', position: [0,0,0], model: undefined },
+    { id: 'piece4', name: 'Chocolate Piece 4', description: 'A floating chocolate piece', color: '#4A2C17', type: 'piece', position: [0,0,0], model: undefined },
+  ];
   return (
     <group>
       {/* Interactive chocolate products */}
@@ -617,8 +476,8 @@ function InteractiveChocolateScene({
         <InteractiveChocolateItem key={product.id} product={product} onSelect={onProductSelect} />
       ))}
 
-      {/* Additional floating cocoa beans */}
-      {Array.from({ length: 12 }).map((_, i) => (
+      {/* Clickable floating cocoa beans */}
+      {Array.from({ length: 3 }).map((_, i) => (
         <Float
           key={`bean-${i}`}
           speed={1 + i * 0.2}
@@ -626,15 +485,20 @@ function InteractiveChocolateScene({
           floatIntensity={0.5}
           position={[Math.sin(i * 0.8) * 6, Math.cos(i * 0.6) * 4, Math.sin(i * 1.2) * 5]}
         >
-          <mesh castShadow>
+          <mesh
+            castShadow
+            onClick={() => onProductSelect(floatingProducts[i])}
+            onPointerOver={e => (e.stopPropagation(), (e.target.scale.x = 1.2))}
+            onPointerOut={e => (e.stopPropagation(), (e.target.scale.x = 1))}
+          >
             <sphereGeometry args={[0.1, 8, 6]} />
             <meshPhysicalMaterial color="#3D2914" roughness={0.8} />
           </mesh>
         </Float>
       ))}
 
-      {/* Ambient chocolate pieces */}
-      {Array.from({ length: 8 }).map((_, i) => (
+      {/* Clickable ambient chocolate pieces */}
+      {Array.from({ length: 4 }).map((_, i) => (
         <Float
           key={`piece-${i}`}
           speed={0.8 + i * 0.1}
@@ -642,7 +506,12 @@ function InteractiveChocolateScene({
           floatIntensity={0.6}
           position={[Math.cos(i * 1.2) * 7, Math.sin(i * 0.9) * 3, Math.cos(i * 0.7) * 6]}
         >
-          <mesh castShadow>
+          <mesh
+            castShadow
+            onClick={() => onProductSelect(floatingProducts[3 + i])}
+            onPointerOver={e => (e.stopPropagation(), (e.target.scale.x = 1.2))}
+            onPointerOut={e => (e.stopPropagation(), (e.target.scale.x = 1))}
+          >
             <boxGeometry args={[0.2, 0.05, 0.3]} />
             <meshPhysicalMaterial color="#4A2C17" roughness={0.3} metalness={0.1} />
           </mesh>
