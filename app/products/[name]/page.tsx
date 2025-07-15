@@ -1,4 +1,4 @@
-import { products } from "../../data/products";
+import { products } from "../data/products";
 import { notFound } from "next/navigation";
 
 export default function ProductDetailPage({ params }: { params: { name: string } }) {
