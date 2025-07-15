@@ -602,6 +602,14 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
               {item}
             </motion.a>
           ))}
+          <motion.a
+            key="Shop"
+            href="/shop"
+            whileHover={{ y: -2 }}
+            className="text-[#FFF9F2]/80 hover:text-[#EED9B6] transition-colors"
+          >
+            Shop
+          </motion.a>
           <Button size="sm" className="bg-[#EED9B6] text-[#2C1A12] hover:bg-[#EED9B6]/90">
             <ShoppingBag className="w-4 h-4 mr-2" />
             Cart ({cartItemCount})
@@ -619,6 +627,34 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
           content={`This is placeholder information for ${navModal}. You can update this content later.`}
           onClose={() => setNavModal(null)}
         />
+      )}
+
+      {/* Hamburger menu button (already present) */}
+      {isOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-[#2C1A12] shadow-lg z-20 flex flex-col items-center py-4 gap-4">
+          {["Collection", "About", "Occasions", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-[#FFF9F2]/80 hover:text-[#EED9B6] text-lg"
+              onClick={() => {
+                handleNavLinkClick(item);
+                setIsOpen(false);
+              }}
+            >
+              {item}
+            </a>
+          ))}
+          {/* --- Shop link in mobile menu --- */}
+          <a
+            key="Shop"
+            href="/shop"
+            className="text-[#FFF9F2]/80 hover:text-[#EED9B6] text-lg"
+            onClick={() => setIsOpen(false)}
+          >
+            Shop
+          </a>
+        </div>
       )}
     </motion.nav>
   )
@@ -836,6 +872,15 @@ export default function MuhanyChocos() {
           <ChevronDown className="w-6 h-6 text-[#EED9B6]" />
         </motion.div>
       </motion.section>
+
+      {/* --- Shop button at the end of the homepage --- */}
+      <div style={{ marginTop: "3rem", textAlign: "center" }}>
+        <a href="/shop">
+          <button style={{ padding: "1rem 2rem", fontSize: "1.2rem", background: "#EED9B6", color: "#2C1A12", borderRadius: 8 }}>
+            Visit the Shop
+          </button>
+        </a>
+      </div>
 
       {/* Cart Toggle Button */}
       {!showCart && !selectedProduct && cartItemCount > 0 && (
