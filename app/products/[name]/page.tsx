@@ -1,9 +1,20 @@
-import { products } from "../data/products";
+import { products } from "../../data/products";
 import { notFound } from "next/navigation";
 
-export default function ProductDetailPage({ params }: { params: { name: string } }) {
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    name: product.name.toLowerCase().replace(/\s+/g, '-'),
+  }));
+}
+
+export default async function ProductDetailPage({ params }: { params: Promise<{ name: string }> }) {
+  const resolvedParams = await params;
+  
+  // Normalize both the product name and the URL param for robust matching
   const product = products.find(
-    (p) => p.name === decodeURIComponent(params.name)
+    (p) =>
+      p.name.toLowerCase().trim() ===
+      decodeURIComponent(resolvedParams.name).toLowerCase().trim()
   );
   if (!product) return notFound();
 

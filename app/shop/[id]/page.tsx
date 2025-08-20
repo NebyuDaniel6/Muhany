@@ -1,21 +1,22 @@
-"use client"
-import { useParams } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { muhanyProducts } from "@/data/products"
 
-// Copy the chocolateProducts array from shop/page.tsx for now
-const chocolateProducts = [
-  // ... copy the chocolateProducts array here ...
-]
+export async function generateStaticParams() {
+  return muhanyProducts.map((product) => ({
+    id: product.id.toString(),
+  }));
+}
 
-export default function ProductDetailPage() {
-  const params = useParams<{ id: string }>()
-  const product = chocolateProducts.find(p => p.id.toString() === params.id)
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
+  const product = muhanyProducts.find(p => p.id.toString() === resolvedParams.id)
+  
   if (!product) return <div className="p-8">Product not found.</div>
 
-  // Find related products (same type, different id)
-  const related = chocolateProducts.filter(p => p.type === product.type && p.id !== product.id).slice(0, 3)
+  // Find related products (same category, different id)
+  const related = muhanyProducts.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3)
 
   return (
     <div className="min-h-screen bg-[#F5E6D3] py-12 px-4">
@@ -26,7 +27,7 @@ export default function ProductDetailPage() {
           <div>
             <Image src={product.images[0] || "/placeholder.svg"} alt={product.name} width={400} height={400} className="rounded-lg mb-4 object-cover" />
             <div className="flex gap-2">
-              {product.images.map((img, i) => (
+              {product.images.slice(0, 4).map((img, i) => (
                 <Image key={i} src={img} alt={product.name + " " + (i+1)} width={80} height={80} className="rounded object-cover border" />
               ))}
             </div>
@@ -38,31 +39,31 @@ export default function ProductDetailPage() {
             <h1 className="text-3xl font-serif text-[#2C1A12] mb-2">{product.name}</h1>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xl text-[#8B5C2C] font-bold">{product.price}</span>
-              {product.originalPrice && <span className="text-sm line-through text-[#2C1A12]/50">{product.originalPrice}</span>}
             </div>
             <div className="mb-4 text-[#2C1A12]/80">{product.description}</div>
             <div className="mb-4">
-              <span className="text-[#EED9B6] font-bold">Rating:</span> {product.rating} ({product.reviews} reviews)
+              <span className="text-[#EED9B6] font-bold">Category:</span> {product.category}
             </div>
             <Button className="bg-[#EED9B6] text-[#2C1A12] hover:bg-[#EED9B6]/90 mb-2">Add to Cart</Button>
             <Button variant="outline" className="border-[#EED9B6] text-[#2C1A12] ml-2">Buy Now</Button>
             <div className="mt-6">
-              <h2 className="font-serif text-lg text-[#2C1A12] mb-2">Ingredients</h2>
-              <ul className="list-disc ml-6 text-[#2C1A12]/80">
-                {product.ingredients.map((ing, i) => <li key={i}>{ing}</li>)}
-              </ul>
-              <h2 className="font-serif text-lg text-[#2C1A12] mt-4 mb-2">Allergens</h2>
-              <ul className="list-disc ml-6 text-[#2C1A12]/80">
-                {product.allergens.map((all, i) => <li key={i}>{all}</li>)}
-              </ul>
-              <h2 className="font-serif text-lg text-[#2C1A12] mt-4 mb-2">Nutrition (per 100g)</h2>
-              <ul className="ml-6 text-[#2C1A12]/80">
-                <li>Calories: {product.nutritionPer100g.calories} kcal</li>
-                <li>Fat: {product.nutritionPer100g.fat}g</li>
-                <li>Carbs: {product.nutritionPer100g.carbs}g</li>
-                <li>Protein: {product.nutritionPer100g.protein}g</li>
-                <li>Fiber: {product.nutritionPer100g.fiber}g</li>
-              </ul>
+              <h2 className="font-serif text-lg text-[#2C1A12] mb-2">Product Details</h2>
+              <div className="text-[#2C1A12]/80">
+                <p><strong>Size/Quantity:</strong> {product.size || product.quantity}</p>
+                <p><strong>Stock:</strong> {product.inStock ? 'In Stock' : 'Out of Stock'}</p>
+                {product.flavors && (
+                  <div className="mt-2">
+                    <strong>Available Flavors:</strong>
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      {product.flavors.map((flavor, i) => (
+                        <span key={i} className="px-2 py-1 bg-[#EED9B6] text-[#2C1A12] rounded text-sm">
+                          {flavor}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
