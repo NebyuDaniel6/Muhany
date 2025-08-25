@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import { X, Star, ShoppingBag, Heart, MessageCircle, Share2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useCart } from "@/hooks/use-cart";
 
 interface ProductModalProps {
   product: Product | null;
@@ -16,6 +17,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, open, onClose }) =
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [showNutrition, setShowNutrition] = useState(false);
+  const { addToCart } = useCart();
 
   if (!open || !product) return null;
 
@@ -209,6 +211,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, open, onClose }) =
             {/* Action Buttons */}
             <div className="flex gap-4">
               <Button
+                onClick={() => {
+                  addToCart(product, quantity);
+                  onClose();
+                }}
                 className="flex-1 bg-[#2C1A12] text-[#FFF9F2] hover:bg-[#2C1A12]/90 py-3"
                 disabled={!product.inStock}
               >

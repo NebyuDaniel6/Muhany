@@ -9,6 +9,7 @@ import ProductFilter from "@/components/ProductFilter"
 import ProductModal from "@/components/ProductModal"
 import { Badge } from "@/components/ui/badge"
 import { ShoppingBag, Filter, Star } from "lucide-react"
+import { useCart } from "@/hooks/use-cart"
 
 export default function ShopPage() {
   const [categoryFilter, setCategoryFilter] = useState<string | null>(null)
@@ -16,6 +17,7 @@ export default function ShopPage() {
   const [sort, setSort] = useState<string>("name")
   const [modalProduct, setModalProduct] = useState<Product | null>(null)
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000])
+  const { addToCart } = useCart()
 
   // Filter products based on selected filters
   let filtered = muhanyProducts

@@ -18,10 +18,13 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import ProductModal from "@/components/ProductModal"
+import Cart from "@/components/Cart"
 import { muhanyProducts } from "@/data/products"
+import { useCart } from "@/hooks/use-cart"
 
 // Enhanced Navigation
-function Navigation({ cartItemCount }: { cartItemCount: number }) {
+function Navigation() {
+  const { cart } = useCart()
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [navModal, setNavModal] = useState<null | string>(null)
@@ -68,7 +71,7 @@ function Navigation({ cartItemCount }: { cartItemCount: number }) {
           </a>
           <Button size="sm" className="bg-[#EED9B6] text-[#2C1A12] hover:bg-[#EED9B6]/90">
             <ShoppingBag className="w-4 h-4 mr-2" />
-            Cart ({cartItemCount})
+            Cart ({cart.totalItems})
           </Button>
         </div>
 
@@ -191,35 +194,22 @@ function FeaturedProducts({ onProductSelect }: { onProductSelect: (product: any)
 export default function MuhanyChocos() {
   // State management
   const [selectedProduct, setSelectedProduct] = useState<any>(null)
-  const [cartItems, setCartItems] = useState<Array<{ product: any; quantity: number }>>([])
   const [showCart, setShowCart] = useState(false)
+  const { addToCart } = useCart()
 
   const handleProductSelect = (product: any) => {
     setSelectedProduct(product)
   }
 
   const handleAddToCart = (product: any, quantity: number) => {
-    const existingItem = cartItems.find((item) => item.product.id === product.id)
-
-    if (existingItem) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item,
-        ),
-      )
-    } else {
-      setCartItems([...cartItems, { product, quantity }])
-    }
-
+    addToCart(product, quantity)
     setSelectedProduct(null)
     setShowCart(true)
   }
 
-  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0)
-
   return (
     <div className="bg-[#2C1A12] text-[#FFF9F2] overflow-x-hidden">
-      <Navigation cartItemCount={cartItemCount} />
+      <Navigation />
 
       {/* Product Detail Modal */}
       {selectedProduct && (
@@ -229,6 +219,9 @@ export default function MuhanyChocos() {
           onClose={() => setSelectedProduct(null)}
         />
       )}
+
+      {/* Cart Modal */}
+      <Cart open={showCart} onClose={() => setShowCart(false)} />
 
       {/* Hero Section */}
       <section className="h-screen relative flex items-center justify-center overflow-hidden">
@@ -263,7 +256,7 @@ export default function MuhanyChocos() {
               variant="outline"
               className="border-2 border-[#EED9B6] text-[#EED9B6] hover:bg-[#EED9B6] hover:text-[#2C1A12] text-lg px-8 py-6 rounded-full font-medium"
             >
-              View Cart ({cartItemCount})
+              View Cart
             </Button>
           </div>
         </div>
