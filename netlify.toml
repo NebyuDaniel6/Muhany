@@ -11,6 +11,12 @@ from = "/presentation"
 to = "/presentation/index.html"
 status = 200
 
+# Prevent any /lander redirects
+[[redirects]]
+from = "/lander"
+to = "/"
+status = 301
+
 # Handle SPA routing for all other routes (but exclude existing files)
 [[redirects]]
 from = "/*"
@@ -23,11 +29,7 @@ from = "https://www.muhanychocos.shop/*"
 to = "https://muhanychocos.shop/:splat"
 status = 301
 
-# Handle subdomain redirects if needed
-[[redirects]]
-from = "https://lander.muhanychocos.shop/*"
-to = "https://muhanychocos.shop/:splat"
-status = 301
+# Removed lander subdomain redirect - no longer needed
 
 [[headers]]
   for = "/*"
