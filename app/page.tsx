@@ -320,6 +320,19 @@ export default function MuhanyChocos() {
         </div>
       </section>
 
+      {/* Hidden Presentation Access */}
+      <div className="fixed bottom-24 left-6 z-50">
+        <a
+          href="/presentation"
+          className="group flex items-center justify-center w-12 h-12 bg-[#2C1A12]/80 backdrop-blur-sm rounded-full border border-[#EED9B6]/20 hover:border-[#EED9B6]/40 transition-all duration-300 hover:scale-110"
+          title="Business Presentations"
+        >
+          <div className="text-[#EED9B6]/60 group-hover:text-[#EED9B6] transition-colors text-lg">
+            📊
+          </div>
+        </a>
+      </div>
+
       {/* Floating WhatsApp Button */}
       <a
         href="https://wa.me/251912604444"
