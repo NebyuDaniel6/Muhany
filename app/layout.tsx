@@ -18,7 +18,7 @@ const sans = Inter({
 
 export const metadata: Metadata = {
   title: "muhanychocos.shop",
-  description: "Created with v0",
+  description: "Premium Ethiopian Chocolate Experience - Handcrafted with Excellence",
   generator: "v0.dev",
 }
 
