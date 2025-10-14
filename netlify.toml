@@ -5,17 +5,16 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Handle SPA routing - but exclude existing static files
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-conditions = {Role = ["admin"]}
-
-# Handle presentation route specifically
+# Handle presentation route specifically first
 [[redirects]]
 from = "/presentation"
 to = "/presentation/index.html"
+status = 200
+
+# Handle SPA routing for all other routes
+[[redirects]]
+from = "/*"
+to = "/index.html"
 status = 200
 
 # Redirect www to non-www (optional)
