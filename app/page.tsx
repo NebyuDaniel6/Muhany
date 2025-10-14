@@ -320,18 +320,118 @@ export default function MuhanyChocos() {
         </div>
       </section>
 
-      {/* Hidden Presentation Access */}
-      <div className="fixed bottom-24 left-6 z-50">
-        <a
-          href="/presentation"
-          className="group flex items-center justify-center w-12 h-12 bg-[#2C1A12]/80 backdrop-blur-sm rounded-full border border-[#EED9B6]/20 hover:border-[#EED9B6]/40 transition-all duration-300 hover:scale-110"
-          title="Business Presentations"
-        >
-          <div className="text-[#EED9B6]/60 group-hover:text-[#EED9B6] transition-colors text-lg">
-            📊
+      {/* Footer */}
+      <footer className="bg-[#2C1A12] text-[#FFF9F2] py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <Coffee className="w-8 h-8 text-[#EED9B6]" />
+                <h3 className="font-serif text-3xl font-bold text-[#EED9B6]">Muhany Chocos</h3>
+              </div>
+              <p className="text-[#FFF9F2]/80 mb-6 leading-relaxed">
+                Premium Ethiopian chocolate experience crafted with the finest ingredients and traditional recipes. 
+                Discover our handcrafted chocolates made with passion and excellence.
+              </p>
+              <div className="flex gap-4">
+                <a
+                  href="https://wa.me/251912604444"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-12 h-12 bg-[#25D366] rounded-full hover:bg-[#25D366]/90 transition-colors"
+                  title="Chat with us on WhatsApp"
+                >
+                  <svg width="24" height="24" viewBox="0 0 32 32" fill="white">
+                    <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.832 4.584 2.236 6.364L4 29l7.01-2.184C12.99 27.605 14.48 28 16 28c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.29 0-2.553-.25-3.74-.74l-.267-.11-4.16 1.297 1.297-4.16-.11-.267C6.25 17.553 6 16.29 6 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.29-7.71c-.26-.13-1.53-.76-1.77-.85-.24-.09-.41-.13-.58.13-.17.26-.67.85-.82 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.07-1.28-.76-.68-1.28-1.52-1.43-1.78-.15-.26-.02-.4.11-.53.11-.11.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.4-.8-1.92-.21-.51-.43-.44-.58-.45-.15-.01-.32-.01-.5-.01-.17 0-.45.06-.68.28-.23.22-.9.88-.9 2.15 0 1.27.92 2.5 1.05 2.67.13.17 1.81 2.77 4.39 3.78.61.21 1.09.33 1.46.42.61.15 1.16.13 1.6.08.49-.06 1.53-.62 1.75-1.22.22-.6.22-1.12.15-1.22-.07-.1-.24-.16-.5-.29z"/>
+                  </svg>
+                </a>
+                <a
+                  href="mailto:info@muhanychocos.shop"
+                  className="flex items-center justify-center w-12 h-12 bg-[#EED9B6]/20 rounded-full hover:bg-[#EED9B6]/30 transition-colors"
+                  title="Email us"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="font-serif text-xl font-bold text-[#EED9B6] mb-4">Quick Links</h4>
+              <ul className="space-y-3">
+                <li><a href="/shop" className="text-[#FFF9F2]/80 hover:text-[#EED9B6] transition-colors">Shop</a></li>
+                <li><a href="/wishlist" className="text-[#FFF9F2]/80 hover:text-[#EED9B6] transition-colors">Wishlist</a></li>
+                <li><a href="/checkout" className="text-[#FFF9F2]/80 hover:text-[#EED9B6] transition-colors">Checkout</a></li>
+                <li><a href="#about" className="text-[#FFF9F2]/80 hover:text-[#EED9B6] transition-colors">About Us</a></li>
+              </ul>
+            </div>
+
+            {/* Contact Info */}
+            <div>
+              <h4 className="font-serif text-xl font-bold text-[#EED9B6] mb-4">Contact</h4>
+              <div className="space-y-3 text-[#FFF9F2]/80">
+                <div className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  <span>+251 912 604 444</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  <span>info@muhanychocos.shop</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <span>Addis Ababa, Ethiopia</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </a>
-      </div>
+
+          {/* Business Section */}
+          <div className="border-t border-[#EED9B6]/20 pt-8 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div>
+                <h4 className="font-serif text-lg font-bold text-[#EED9B6] mb-2">Business Inquiries</h4>
+                <p className="text-[#FFF9F2]/70 text-sm">
+                  Interested in partnerships, bulk orders, or corporate services?
+                </p>
+              </div>
+              <div className="flex gap-3">
+                <a
+                  href="/presentation"
+                  className="px-4 py-2 bg-[#EED9B6]/10 border border-[#EED9B6]/30 rounded-lg text-[#EED9B6] hover:bg-[#EED9B6]/20 transition-colors text-sm"
+                >
+                  View Business Presentation
+                </a>
+                <a
+                  href="mailto:business@muhanychocos.shop"
+                  className="px-4 py-2 bg-[#EED9B6] text-[#2C1A12] rounded-lg hover:bg-[#EED9B6]/90 transition-colors text-sm font-medium"
+                >
+                  Contact Business Team
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-[#EED9B6]/20 pt-6 text-center">
+            <p className="text-[#FFF9F2]/60 text-sm">
+              © 2025 Muhany Chocos. All rights reserved. | Premium Ethiopian Chocolate Experience
+            </p>
+          </div>
+        </div>
+      </footer>
 
       {/* Floating WhatsApp Button */}
       <a
