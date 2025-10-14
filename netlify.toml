@@ -11,7 +11,7 @@ from = "/presentation"
 to = "/presentation/index.html"
 status = 200
 
-# Handle SPA routing for all other routes
+# Handle SPA routing for all other routes (but exclude existing files)
 [[redirects]]
 from = "/*"
 to = "/index.html"
