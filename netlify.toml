@@ -5,10 +5,23 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Handle SPA routing
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
+
+# Redirect www to non-www (optional)
+[[redirects]]
+from = "https://www.muhanychocos.shop/*"
+to = "https://muhanychocos.shop/:splat"
+status = 301
+
+# Handle subdomain redirects if needed
+[[redirects]]
+from = "https://lander.muhanychocos.shop/*"
+to = "https://muhanychocos.shop/:splat"
+status = 301
 
 [[headers]]
   for = "/*"
