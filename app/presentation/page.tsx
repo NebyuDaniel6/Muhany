@@ -219,15 +219,16 @@ export default function PresentationPage() {
             viewport={{ once: true }}
             className="relative aspect-video rounded-lg overflow-hidden shadow-2xl bg-muted"
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-20 h-20 rounded-full bg-[#EED9B6]/20 flex items-center justify-center mx-auto mb-4">
-                  <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-[#EED9B6] border-b-[12px] border-b-transparent ml-1" />
-                </div>
-                <p className="text-muted-foreground text-lg">Muhany Chocos Brand Video</p>
-                <p className="text-muted-foreground/60 text-sm mt-2">Video embed placeholder</p>
-              </div>
-            </div>
+            <video
+              className="w-full h-full object-cover"
+              controls
+              preload="metadata"
+              poster="/placeholder.svg"
+            >
+              <source src="/muhany-first-video.mov" type="video/quicktime" />
+              <source src="/muhany-first-video.mov" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </motion.div>
         </div>
       </section>
